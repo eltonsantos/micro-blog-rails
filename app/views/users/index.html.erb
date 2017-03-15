@@ -1,0 +1,33 @@
+<h1><center>Listar usuários</center></h1>
+
+<hr />
+
+<% if @users.present? %>
+  <div class="timeline"> 
+    <div class="row">
+      <div class="col-md-12">
+      <% @users.each do |user| %>
+        <div class="col-md-4">
+          <div class="avatar">
+            <%= image_tag user.image(:thumb) %>
+          </div>
+          <div class="bubble-container">
+            <div class="bubble">
+              <%= link_to user_path(user), class: 'link-user' do %>
+                <h3>@<%= user.username %></h3>
+              <% end %>
+              <br />
+              <h6 class="meta"><%= user.email %></h6>
+              Quantidade de postagens:
+              <%= user.posts.length %>
+            </div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <h3>Não há usuários contendo o(s) termo(s) <span class="meta"><%= params[:search] %></span>.</h3>
+<% end %>

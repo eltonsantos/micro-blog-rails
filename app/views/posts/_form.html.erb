@@ -1,0 +1,19 @@
+<div class="well well-sm well-social-post">    
+  <%= form_for @post, remote: true do |f| %>        
+    <%= f.text_area :message, class: "form-control", placeholder: "O que você está pensando?" %>
+    <ul class='list-inline post-actions'>
+      <li>
+        <a href="#" class="glyphicon glyphicon-camera" data-toggle="tooltip" data-placement="bottom" title="Em desenvolvimento"></a>
+      </li>
+      <li>
+        <a href="#" class='glyphicon glyphicon-user' data-toggle="tooltip" data-placement="bottom" title="Em desenvolvimento"></a>
+      </li>
+      <li>
+        <a href="#" class='glyphicon glyphicon-map-marker' data-toggle="tooltip" data-placement="bottom" title="Em desenvolvimento"></a>
+      </li>
+      <li class='pull-right'>
+        <%= f.submit "Criar Postagem", class: "btn btn-info btn-xs", remote: true %>
+      </li>
+    </ul>
+  <% end %>
+</div>

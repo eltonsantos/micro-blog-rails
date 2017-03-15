@@ -1,0 +1,103 @@
+<div class="container">
+
+  <div class="blog-header">
+    <h1 class="blog-title">Micro Blog Rails</h1>
+    <p class="lead blog-description">Micro blog desenvolvido com Ruby on Rails.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-search">
+      <h1>Busque por alguém</h1>
+        <%= form_tag(users_path, method: 'get', class: 'search-container') do %>
+         
+          <%= text_field_tag :search, params[:search], class: 'search-bar', placeholder: "Busque alguma postagem" %>
+          
+          <%= button_tag class: 'search-icon' do %>
+            <i class="fa fa-search"></i>
+          <% end %>
+
+        <% end %>
+    </div>
+
+    <div class="col-sm-4 blog-sidebar">
+
+      <div class="container-profile">
+        <div class="header-profile">
+          <div class="bio">
+            <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" class="bg">
+            <div class="desc">
+              <h3>@<%= current_user.username %></h3>
+              <p><%= current_user.email %></p>
+            </div>
+          </div>
+          <div class="avatarcontainer">
+            <%= image_tag current_user.image.url(:thumb), class:"avatar-profile" %>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="data">
+            <ul>
+              <li><%= @posts.length %><span>Postagens</span>
+              </li>
+              <li>1,119<span>Seguidores</span>
+              </li>
+              <li>530<span>Seguindo</span>
+              </li>
+            </ul>
+          </div>
+          <div class="follow">        
+            <%= link_to edit_user_registration_path do %>
+              <i class="fa fa-edit"></i>
+              Editar
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+    </div><!-- /.blog-sidebar -->
+
+    <div class="col-sm-8 blog-main">
+
+      <div class="blog-post">
+
+        <%= render 'form' %>
+
+        <!-- Container Principal -->
+        <% if @posts.length > 0 %>
+          <div class="comments-container">
+
+            <div class="message"></div>
+
+            <ul class="comments-list">
+              <% @posts.each do |post| %>
+                <li>
+                  <div class="comment-main-level">
+                    <!-- Container Comentario -->
+                    <div class="comment-box">
+                      <div class="comment-head">
+                        <h6 class="comment-name by-author"><a href="#">@<%= current_user.username %></a></h6>
+                        <span class="comment-date"><%= post.created_at.strftime('%d/%m/%Y') %></span>
+                        <i class="fa fa-reply" data-toggle="tooltip" data-placement="top" title="Em desenvolvimento"></i>
+                        <i class="fa fa-heart" data-toggle="tooltip" data-placement="top" title="Em desenvolvimento"></i>
+                      </div>
+                      <div class="comment-content">
+                        <%= post.message %>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% else %>
+          <div class="alert alert-warning">Você ainda não tem nenhuma postagem.</div>
+        <% end %>
+
+      </div><!-- /.blog-post -->
+
+    </div><!-- /.blog-main -->
+
+  </div><!-- /.row -->
+
+</div>

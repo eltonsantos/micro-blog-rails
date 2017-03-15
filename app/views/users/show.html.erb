@@ -1,0 +1,81 @@
+<div class="container">
+
+  <div class="blog-header">
+    <h1 class="blog-title">Detalhes do usuário</h1>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-4 blog-sidebar">
+
+      <div class="container-profile">
+        <div class="header-profile">
+          <div class="bio">
+            <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" class="bg">
+            <div class="desc">
+              <h3>@<%= @user.username %></h3>
+              <p><%= @user.email %></p>
+            </div>
+          </div>
+          <div class="avatarcontainer">
+            <%= image_tag @user.image.url(:thumb), class:"avatar-profile" %>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="data">
+            <ul>
+              <li><%= @user.posts.length %><span>Postagens</span>
+              </li>
+              <li>1,119<span>Followers</span>
+              </li>
+              <li>530<span>Following</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+    </div><!-- /.blog-sidebar -->
+
+    <div class="col-sm-8 blog-main">
+
+      <div class="blog-user">
+
+        <h1>Postagens de <%= @user.username %></h1>
+
+        <!-- Container Principal -->
+        <% if @user.posts.length > 0 %>
+          <div class="comments-container">
+            <ul class="comments-list">
+              <% @user.posts.each do |post| %>
+                <li>
+                  <div class="comment-main-level">
+                    <!-- Container Comentario -->
+                    <div class="comment-box">
+                      <div class="comment-head">
+                        <h6 class="comment-name by-author"><a href="#">@<%= @user.username %></a></h6>
+                        <span class="comment-date"><%= post.created_at.strftime('%d/%m/%Y') %></span>
+                        <i class="fa fa-reply" data-toggle="tooltip" data-placement="top" title="Em desenvolvimento"></i>
+                        <i class="fa fa-heart" data-toggle="tooltip" data-placement="top" title="Em desenvolvimento"></i>
+                      </div>
+                      <div class="comment-content">
+                        <%= post.message %>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% else %>
+          <div class="alert alert-warning">Este usuário não tem nenhuma postagem.</div>
+        <% end %>
+
+      </div><!-- /.blog-user -->
+
+    </div><!-- /.blog-main -->
+
+  </div><!-- /.row -->
+
+</div>

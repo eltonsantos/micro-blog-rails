@@ -1,0 +1,28 @@
+<h1><center>Veja o que está acontecendo pelo mundo!</center></h1>
+
+<hr />
+
+<div class="timeline"> 
+  <div class="row">
+    <div class="col-md-12">
+    <% @posts.each do |post| %>
+      <div class="col-md-4">
+        <div class="avatar">
+          <%= image_tag post.user.image.url(:thumb) %>
+        </div>
+        <div class="bubble-container">
+          <div class="bubble">
+            <%= link_to user_path(post.user.id), class: 'link-user' do %>
+              <h3>@<%= post.user.username %></h3>
+            <% end %>
+            <br/>
+            <span class="meta"><%= post.created_at.strftime('%d/%m/%Y') %></span> -
+            <%= truncate(post.message, length: 170) %>
+          </div>
+          <div class="arrow"></div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
