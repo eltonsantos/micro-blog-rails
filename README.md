@@ -47,7 +47,7 @@ The following tests were performed using RSpec:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://bitbucket.org/eltin182/micro-blog-rails.
+Bug reports and pull requests are welcome on GitHub at https://github.com/eltonsantos/micro-blog-rails.
 
 ## License
 
